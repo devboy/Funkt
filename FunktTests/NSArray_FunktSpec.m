@@ -145,6 +145,37 @@ SPEC_BEGIN(NSArray_FunktSpec)
 
             });
 
+            describe(@"reduce", ^
+            {
+
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *reduced = NSMutableArray.array;
+                    array.reduce(@0, ^id(id accumulator, id value)
+                    {
+                        [reduced addObject:value];
+                        return accumulator;
+//                        return @([accumulator intValue] + [value intValue]);
+                    });
+                    [reduced shouldNotBeNil];
+                    [[reduced should] containObjectsInArray:array];
+                });
+
+                it(@"should return a reduced value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSNumber *expected = @15;
+                    NSNumber *reduced = array.reduce(@0, ^id(id accumulator, id value)
+                    {
+                        return @([accumulator intValue] + [value intValue]);
+                    });
+                    [reduced shouldNotBeNil];
+                    [[reduced should] equal:expected];
+                });
+
+            });
+
         });
 
 SPEC_END

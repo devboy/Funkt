@@ -63,5 +63,18 @@
     };
 }
 
+- (id (^)(id, id (^)(id, id)))reduce
+{
+    return ^id(id accumulator, id (^reduceBlock)(id, id) )
+    {
+        __block id acc = accumulator;
+        [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+        {
+            acc = reduceBlock(acc, obj);
+        }];
+        return acc;
+    };
+}
+
 
 @end
