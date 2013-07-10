@@ -50,4 +50,18 @@
     };
 }
 
+- (NSArray * (^)(id (^)(id)))map
+{
+    return ^NSArray *(id (^mapBlock)(id))
+    {
+        NSMutableArray *array = NSMutableArray.array;
+        [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+        {
+            [array addObject:mapBlock(obj)];
+        }];
+        return array;
+    };
+}
+
+
 @end

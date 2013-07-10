@@ -117,6 +117,34 @@ SPEC_BEGIN(NSArray_FunktSpec)
 
             });
 
+            describe(@"map", ^
+            {
+
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *mapped = NSMutableArray.array;
+                    array.map(^id(id o)
+                    {
+                        [mapped addObject:o];
+                        return o;
+                    });
+                    [mapped shouldNotBeNil];
+                    [[mapped should] containObjectsInArray:array];
+                });
+
+                it(@"should return a new array with the results of the mapBlock", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *expected = NSMutableArray.array;
+                    for(NSNumber *number in array) [expected addObject:[number stringValue]];
+                    NSArray *mapped = array.map(lambda(o, [o stringValue]));
+                    [mapped shouldNotBeNil];
+                    [[mapped should] containObjectsInArray:expected];
+                });
+
+            });
+
         });
 
 SPEC_END

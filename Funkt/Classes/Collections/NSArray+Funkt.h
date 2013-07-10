@@ -9,4 +9,5 @@
 @property (readonly) NSArray *tail;
 @property (readonly) NSArray *flatten;
 @property (readonly) void (^each)(void (^eachBlock)(id));
+@property (readonly) NSArray *(^map)(id (^mapBlock)(id));
 @end
