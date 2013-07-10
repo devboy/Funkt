@@ -219,6 +219,45 @@ SPEC_BEGIN(NSArray_FunktSpec)
 
             });
 
+            describe(@"any", ^
+            {
+
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *iterated = NSMutableArray.array;
+                    BOOL (^any1)(BOOL (^)(id)) = array.any;
+                    any1(^BOOL(id o)
+                    {
+                        [iterated addObject:o];
+                        return NO;
+                    });
+                    [iterated shouldNotBeNil];
+                    [[iterated should] containObjectsInArray:array];
+                });
+
+                it(@"should return yes if the value is found", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    BOOL (^any1)(BOOL (^)(id)) = array.any;
+                    [[theValue(any1(^BOOL(id o)
+                    {
+                        return [o isEqualToNumber:@1];
+                    })) should] beYes];
+                });
+
+                it(@"should return no if the value is not found", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    BOOL (^any1)(BOOL (^)(id)) = array.any;
+                    [[theValue(any1(^BOOL(id o)
+                    {
+                        return [o isEqualToNumber:@6];
+                    })) should] beNo];
+                });
+
+            });
+
         });
 
 SPEC_END

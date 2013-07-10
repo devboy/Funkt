@@ -85,5 +85,13 @@
     };
 }
 
+- (BOOL (^)(BOOL (^)(id)))any
+{
+    return ^BOOL(BOOL (^anyBlock)(id) )
+    {
+        return self.find(anyBlock) != None.none;
+    };
+}
+
 
 @end
