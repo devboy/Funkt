@@ -176,6 +176,49 @@ SPEC_BEGIN(NSArray_FunktSpec)
 
             });
 
+            describe(@"find", ^
+            {
+
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *iterated = NSMutableArray.array;
+                    array.find(^BOOL(id o)
+                    {
+                        [iterated addObject:o];
+                        return NO;
+                    });
+                    [iterated shouldNotBeNil];
+                    [[iterated should] containObjectsInArray:array];
+                });
+
+                it(@"should return the first occurence of the value as some", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSNumber *expected = @3;
+                    NSObject <Option> *found =  array.find(^BOOL(id o)
+                    {
+                        return o == expected;
+                    });
+                    [found shouldNotBeNil];
+                    [[found should] beKindOfClass:Some.class];
+                    [[found.get should] equal:expected];
+                });
+
+                it(@"should return none if the value is not found", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSNumber *expected = @6;
+                    NSObject <Option> *found =  array.find(^BOOL(id o)
+                    {
+                        return o == expected;
+                    });
+                    [found shouldNotBeNil];
+                    [[found should] equal:None.none];
+                });
+
+            });
+
         });
 
 SPEC_END

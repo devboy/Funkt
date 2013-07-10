@@ -76,5 +76,14 @@
     };
 }
 
+- (NSObject <Option> * (^)(BOOL (^)(id)))find
+{
+    return ^NSObject <Option> *(BOOL (^findBlock)(id value))
+    {
+        for(id obj in self) if(findBlock(obj)) return Funkt.option(obj);
+        return None.none;
+    };
+}
+
 
 @end
