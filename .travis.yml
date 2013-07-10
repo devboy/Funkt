@@ -2,4 +2,4 @@ language: objective-c
 before_install:
     - brew update
     - brew install xctool
-script: xctool -workspace Funkt.xcworkspace -scheme All in FunktTests -sdk iphonesimulator -configuration Debug clean build test
+script: xctool -workspace Funkt.xcworkspace -scheme 'All in FunktTests' -sdk iphonesimulator -configuration Debug clean build test
