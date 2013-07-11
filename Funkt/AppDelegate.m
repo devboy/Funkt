@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "NSArray+Funkt.h"
+#import "Lambda.h"
 
 @implementation AppDelegate
 
@@ -16,7 +18,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [self playground];
+
     return YES;
+}
+
+- (void)playground
+{
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

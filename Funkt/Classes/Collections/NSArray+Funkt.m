@@ -132,10 +132,7 @@
 {
     return ^(SEL selector, NSArray *array)
     {
-        for(id obj in self)
-        {
-            [(NSObject *)obj performSelector:selector];
-        }
+        for(id obj in self) [obj performSelector:selector];
     };
 }
 
@@ -144,6 +141,95 @@
     return ^NSArray *(NSString *keyPath)
     {
         return self.map(lambda(o, [o valueForKey:keyPath]));
+    };
+}
+
+- (NSArray * (^)(NSDictionary *))where
+{
+    return ^NSArray *(NSDictionary *properties)
+    {
+        return self.filter(^BOOL(id o)
+        {
+            for(NSString *key in properties.allKeys)
+            {
+                id value = [o valueForKey:key];
+                if(![value isEqual:properties[key]] && value != properties[key])
+                    return NO;
+            }
+            return YES;
+        });
+    };
+}
+
+- (NSArray *)uniq
+{
+    return [[NSOrderedSet orderedSetWithArray:self] array];
+}
+
+- (NSArray * (^)(NSUInteger))take
+{
+    return ^NSArray *(NSUInteger n)
+    {
+        return [self subarrayWithRange:NSMakeRange(0, MIN(n, self.count))];
+    };
+}
+
+- (NSArray * (^)(NSUInteger))takeRight
+{
+    return ^NSArray *(NSUInteger n)
+    {
+        n = MIN(n, self.count);
+        return [self subarrayWithRange:NSMakeRange(self.count-n, n)];
+    };
+}
+
+- (BOOL (^)(id))contains
+{
+    return ^BOOL(id o)
+    {
+        return [self containsObject:o];
+    };
+}
+
+- (NSArray * (^)(NSComparator))sortBy
+{
+    return ^NSArray *(NSComparator comparator)
+    {
+        return [self sortedArrayUsingComparator:comparator];
+    };
+}
+
+- (NSDictionary * (^)(id (^)(id)))countBy
+{
+    return ^NSDictionary *(id (^countByBlock)(id))
+    {
+        return self.reduce(@{}, ^id(NSDictionary *dict, id value)
+        {
+            id by = countByBlock(value);
+            NSMutableDictionary *mutableDictionary = dict.mutableCopy;
+            if(mutableDictionary[by])
+                mutableDictionary[by] = @([mutableDictionary[by] unsignedIntegerValue] + 1);
+            else
+                mutableDictionary[by] = @1;
+            return mutableDictionary;
+        });
+    };
+}
+
+- (NSDictionary * (^)(id (^)(id)))groupBy
+{
+    return ^NSDictionary *(id (^countByBlock)(id))
+    {
+        return self.reduce(@{}, ^id(NSDictionary *dict, id value)
+        {
+            id by = countByBlock(value);
+            NSMutableDictionary *mutableDictionary = dict.mutableCopy;
+            if(mutableDictionary[by])
+                mutableDictionary[by] = [mutableDictionary[by] arrayByAddingObject:value];
+            else
+                mutableDictionary[by] = @[value];
+            return mutableDictionary;
+        });
     };
 }
 

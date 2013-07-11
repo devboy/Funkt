@@ -408,6 +408,139 @@ SPEC_BEGIN(NSArray_FunktSpec)
                 });
             });
 
+            describe(@"where", ^
+            {
+                it(@"should return a new array with the values which match all the properties", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSArray *expected = @[@3];
+                    NSArray *found = array.where(@{
+                            @"stringValue":@"3",
+                            @"description":(@3).description
+                    });
+                    [found shouldNotBeNil];
+                    [[found should] containObjectsInArray:expected];
+                });
+            });
+
+            describe(@"uniq", ^
+            {
+                it(@"should return a new array without duplicates", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@3,@4,@5,@5];
+                    NSArray *expected = @[@1,@2,@3,@4,@5];
+                    NSArray *unique = array.uniq;
+                    [unique shouldNotBeNil];
+                    [[unique should] containObjectsInArray:expected];
+                });
+            });
+
+            describe(@"take", ^
+            {
+                it(@"should return a new array with the first n elements", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@3,@4,@5,@5];
+                    NSArray *expected = @[@1,@2,@3];
+                    NSArray *taken = array.take(3);
+                    [taken shouldNotBeNil];
+                    [[taken should] containObjectsInArray:expected];
+                });
+
+                it(@"should return the full array if n > array.count", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@3,@4,@5,@5];
+                    NSArray *taken = array.take(30);
+                    [taken shouldNotBeNil];
+                    [[taken should] containObjectsInArray:array];
+                });
+            });
+
+            describe(@"takeRight", ^
+            {
+                it(@"should return a new array with the last n elements", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@3,@4,@5,@5];
+                    NSArray *expected = @[@4,@5,@5];
+                    NSArray *taken = array.takeRight(3);
+                    [taken shouldNotBeNil];
+                    [[taken should] containObjectsInArray:expected];
+                });
+
+                it(@"should return the full array if n > array.count", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@3,@4,@5,@5];
+                    NSArray *taken = array.takeRight(30);
+                    [taken shouldNotBeNil];
+                    [[taken should] containObjectsInArray:array];
+                });
+            });
+
+            describe(@"contains", ^
+            {
+
+                it(@"should return YES for an element it contains", ^
+                {
+                    [[theValue(@[@1].contains(@1)) should] beTrue];
+                });
+
+                it(@"should return NO for an element it contains", ^
+                {
+                    [[theValue(@[].contains(@1)) should] beFalse];
+                });
+
+            });
+
+            describe(@"sortBy", ^
+            {
+
+                it(@"should work like NSArray sortedArrayUsingComparator:", ^
+                {
+                    NSArray *array = @[@2,@1,@3,@5,@100];
+                    NSComparator comparator = ^NSComparisonResult(id obj1, id obj2)
+                    {
+                        return [obj1 compare:obj2];
+                    };
+                    [[array.sortBy(comparator) should] equal:[array sortedArrayUsingComparator:comparator]];
+                });
+
+            });
+
+            describe(@"countBy", ^
+            {
+                it(@"should create a dictionary with the count of each block return value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@"1",@"2",@{},@{},@{},@{}];
+                    NSDictionary *expected = @{
+                        (@3).class : @3,
+                        @"2".class : @2,
+                        @{}.class : @4
+                    };
+                    NSDictionary *counted = array.countBy(^id(id o)
+                    {
+                        return [o class];
+                    });
+                    [[counted should] equal:expected];
+                });
+            });
+
+            describe(@"groupBy", ^
+            {
+                it(@"should create a dictionary with the count of each block return value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@"1",@"2",@{},@{},@{},@{}];
+                    NSDictionary *expected = @{
+                            (@3).class : @[@1,@2,@3],
+                            @"2".class : @[@"1",@"2"],
+                            @{}.class : @[@{},@{},@{},@{}]
+                    };
+                    NSDictionary *counted = array.groupBy(^id(id o)
+                    {
+                        return [o class];
+                    });
+                    [[counted should] equal:expected];
+                });
+            });
+
         });
 
 SPEC_END

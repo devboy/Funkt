@@ -19,4 +19,12 @@
 @property (readonly) NSArray * (^reject)(BOOL (^rejectBlock)(id));
 @property (readonly) void (^invoke)(SEL, NSArray *);
 @property (readonly) NSArray * (^pluck)(NSString *);
+@property (readonly) NSArray * (^where)(NSDictionary *);
+@property (readonly) NSArray *uniq;
+@property (readonly) NSArray * (^take)(NSUInteger);
+@property (readonly) NSArray * (^takeRight)(NSUInteger);
+@property (readonly) BOOL (^contains)(id);
+@property (readonly) NSArray *(^sortBy)(NSComparator);
+@property (readonly) NSDictionary *(^countBy)(id (^countByBlock)(id));
+@property (readonly) NSDictionary *(^groupBy)(id (^groupByBlock)(id));
 @end
