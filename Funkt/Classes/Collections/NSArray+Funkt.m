@@ -139,5 +139,13 @@
     };
 }
 
+- (NSArray * (^)(NSString *))pluck
+{
+    return ^NSArray *(NSString *keyPath)
+    {
+        return self.map(lambda(o, [o valueForKey:keyPath]));
+    };
+}
+
 
 @end

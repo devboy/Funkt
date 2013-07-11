@@ -397,17 +397,15 @@ SPEC_BEGIN(NSArray_FunktSpec)
 
             describe(@"pluck", ^
             {
-
                  it(@"should return a new array with the results of the plucked values as some", ^
                 {
                     NSArray *array = @[@1,@2,@3,@4,@5];
                     NSMutableArray *expected = NSMutableArray.array;
                     for(NSNumber *number in array) [expected addObject:[number stringValue]];
-                    NSArray *mapped = array.map(lambda(o, [o stringValue]));
-                    [mapped shouldNotBeNil];
-                    [[mapped should] containObjectsInArray:expected];
+                    NSArray *plucked = array.pluck(@"stringValue");
+                    [plucked shouldNotBeNil];
+                    [[plucked should] containObjectsInArray:expected];
                 });
-
             });
 
         });

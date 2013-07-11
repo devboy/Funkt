@@ -18,4 +18,5 @@
 @property (readonly) NSArray * (^filter)(BOOL (^filterBlock)(id));
 @property (readonly) NSArray * (^reject)(BOOL (^rejectBlock)(id));
 @property (readonly) void (^invoke)(SEL, NSArray *);
+@property (readonly) NSArray * (^pluck)(NSString *);
 @end
