@@ -8,7 +8,7 @@
 
 - (NSObject <Option> *)first
 {
-    return self.count < 1 ? [None none] : Funkt.option([self objectAtIndex:0]);
+    return self.isEmpty ? [None none] : Funkt.option([self objectAtIndex:0]);
 }
 
 - (NSObject <Option> *)last
@@ -23,7 +23,7 @@
 
 - (NSArray *)tail
 {
-    return self.count < 1 ? @[] : [self subarrayWithRange:NSMakeRange(1, self.count-1)];
+    return self.isEmpty ? @[] : [self subarrayWithRange:NSMakeRange(1, self.count-1)];
 }
 
 - (NSArray *)flatten
@@ -90,6 +90,52 @@
     return ^BOOL(BOOL (^anyBlock)(id) )
     {
         return self.find(anyBlock) != None.none;
+    };
+}
+
+- (BOOL)isEmpty
+{
+    return !self.count;
+}
+
+- (BOOL (^)(BOOL (^)(id)))all
+{
+    return ^BOOL(BOOL (^allBlock)(id) )
+    {
+        if(self.isEmpty) return NO;
+        for(id obj in self) if(!allBlock(obj)) return NO;
+        return YES;
+    };
+}
+
+- (NSArray * (^)(BOOL (^)(id)))filter
+{
+    return ^NSArray *(BOOL (^filterBlock)(id))
+    {
+        NSMutableArray *array = NSMutableArray.array;
+        for(id obj in self) if(filterBlock(obj)) [array addObject:obj];
+        return array;
+    };
+}
+
+- (NSArray * (^)(BOOL (^)(id)))reject
+{
+    return ^NSArray *(BOOL (^rejectBlock)(id) )
+    {
+        NSMutableArray *array = NSMutableArray.array;
+        for(id obj in self) if(!rejectBlock(obj)) [array addObject:obj];
+        return array;
+    };
+}
+
+- (void (^)(SEL, NSArray *))invoke
+{
+    return ^(SEL selector, NSArray *array)
+    {
+        for(id obj in self)
+        {
+            [(NSObject *)obj performSelector:selector];
+        }
     };
 }
 

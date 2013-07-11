@@ -256,6 +256,158 @@ SPEC_BEGIN(NSArray_FunktSpec)
                     })) should] beNo];
                 });
 
+                it(@"should return no for an empty array", ^
+                {
+                    BOOL (^any1)(BOOL (^)(id)) = @[].any;
+                    [[theValue(any1(^BOOL(id o)
+                    {
+                        return [o isKindOfClass:NSNumber.class];
+                    })) should] beNo];
+                });
+
+            });
+
+            describe(@"isEmpty", ^
+            {
+
+                it(@"should be empty when array is empty", ^
+                {
+                    [[theValue(@[].isEmpty) should] beTrue];
+                });
+
+                it(@"should not be empty when array is not empty", ^
+                {
+                    [[theValue((@[@1,@2]).isEmpty) should] beFalse];
+                });
+
+            });
+
+            describe(@"all", ^
+            {
+
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *iterated = NSMutableArray.array;
+                    array.all(^BOOL(id o)
+                    {
+                        [iterated addObject:o];
+                        return YES;
+                    });
+                    [iterated shouldNotBeNil];
+                    [[iterated should] containObjectsInArray:array];
+                });
+
+                it(@"should return yes if all values are matching", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    [[theValue(array.all(^BOOL(id o)
+                    {
+                        return [o isKindOfClass:NSNumber.class];
+                    })) should] beYes];
+                });
+
+                it(@"should return no if one or more of values is not matching", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5, @"6"];
+                    [[theValue(array.all(^BOOL(id o)
+                    {
+                        return [o isKindOfClass:NSNumber.class];
+                    })) should] beNo];
+                });
+
+                it(@"should return no for an empty array", ^
+                {
+                    [[theValue(@[].all(^BOOL(id o)
+                    {
+                        return [o isKindOfClass:NSNumber.class];
+                    })) should] beNo];
+                });
+
+            });
+
+            describe(@"filter", ^
+            {
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *iterated = NSMutableArray.array;
+                    array.filter(^BOOL(id o)
+                    {
+                        [iterated addObject:o];
+                        return YES;
+                    });
+                    [iterated shouldNotBeNil];
+                    [[iterated should] containObjectsInArray:array];
+                });
+
+                it(@"should filter out the values which do not match", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@"4",@"5"];
+                    NSArray *expected = @[@1,@2,@3];
+                    NSArray *filtered = array.filter(^BOOL(id o)
+                    {
+                        return [o isKindOfClass:NSNumber.class];
+                    });
+                    [filtered shouldNotBeNil];
+                    [[filtered should] containObjectsInArray:expected];
+                });
+            });
+
+            describe(@"reject", ^
+            {
+                it(@"should iterate each value", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *iterated = NSMutableArray.array;
+                    array.reject(^BOOL(id o)
+                    {
+                        [iterated addObject:o];
+                        return YES;
+                    });
+                    [iterated shouldNotBeNil];
+                    [[iterated should] containObjectsInArray:array];
+                });
+
+                it(@"should reject(filter out) the values which do match", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@"4",@"5"];
+                    NSArray *expected = @[@"4",@"5"];
+                    NSArray *filtered = array.reject(^BOOL(id o)
+                    {
+                        return [o isKindOfClass:NSNumber.class];
+                    });
+                    [filtered shouldNotBeNil];
+                    [[filtered should] containObjectsInArray:expected];
+                });
+            });
+
+            describe(@"invoke", ^
+            {
+                it(@"should execute selector on each value", ^
+                {
+                    NSArray *array = @[[NSNumber mock],[NSNumber mock],[NSNumber mock],[NSNumber mock],[NSNumber mock]];
+                    array.each(^(id o)
+                    {
+                        [[[o should] receive] stringValue];
+                    });
+                    array.invoke(@selector(stringValue),@[]);
+                });
+            });
+
+            describe(@"pluck", ^
+            {
+
+                 it(@"should return a new array with the results of the plucked values as some", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5];
+                    NSMutableArray *expected = NSMutableArray.array;
+                    for(NSNumber *number in array) [expected addObject:[number stringValue]];
+                    NSArray *mapped = array.map(lambda(o, [o stringValue]));
+                    [mapped shouldNotBeNil];
+                    [[mapped should] containObjectsInArray:expected];
+                });
+
             });
 
         });
