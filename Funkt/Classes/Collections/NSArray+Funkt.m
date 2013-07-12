@@ -254,7 +254,7 @@
     };
 }
 
-- (NSArray * (^)(NSArray *, ...))unionWith
+- (NSArray * (^)(NSArray *, ...))unionOf
 {
     return ^NSArray *(NSArray *array, ...)
     {

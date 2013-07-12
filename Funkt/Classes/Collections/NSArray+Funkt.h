@@ -29,5 +29,5 @@
 @property (readonly) NSDictionary *(^groupBy)(id (^groupByBlock)(id));
 @property (readonly) NSArray *shuffle;
 @property (readonly) NSArray *(^without)(NSArray *);
-@property (readonly) NSArray *(^unionWith)(NSArray *,...);
+@property (readonly) NSArray *(^unionOf)(NSArray *,...);
 @end
