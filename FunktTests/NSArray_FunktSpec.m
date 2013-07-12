@@ -566,8 +566,18 @@ SPEC_BEGIN(NSArray_FunktSpec)
                 it(@"should merge arrays to a unique array", ^
                 {
                     NSArray *array = @[@1,@2];
-                    NSArray *expected = @[@1,@2,@3,@4,@5];
-                    [[array.unionOf(@[@1,@2,@3],@[@2,@3,@4],@[@4,@5],nil) should] equal:expected];
+                    NSArray *expected = @[@1,@2,@8,@3,@4,@5];
+                    [[array.unionOf(@[@1,@2,@8],@[@2,@3,@4],@[@4,@5],nil) should] equal:expected];
+                });
+            });
+
+            describe(@"intersectionOf", ^
+            {
+                it(@"should create an array containing only values which are present in all given arrays", ^
+                {
+                    NSArray *array = @[@1,@2,@3];
+                    NSArray *expected = @[@2,@3];
+                    [[array.intersectionOf(@[@2,@3],@[@2,@3],@[@2,@3], nil) should] equal:expected];
                 });
             });
 

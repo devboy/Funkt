@@ -256,11 +256,11 @@
 
 - (NSArray * (^)(NSArray *, ...))unionOf
 {
-    return ^NSArray *(NSArray *array, ...)
+    return ^NSArray *(NSArray *first, ...)
     {
         va_list args;
-        va_start(args, array);
-        NSMutableArray *others = NSMutableArray.array;
+        va_start(args, first);
+        NSMutableArray *others = [NSMutableArray arrayWithObject:first];
         NSArray *value;
         while( value = va_arg( args, NSArray * ) ) [others addObject:value];
         va_end(args);
@@ -270,6 +270,30 @@
             return [unionized arrayByAddingObjectsFromArray:other.reject(^BOOL(id o)
             {
                 return unionized.contains(o);
+            })];
+        });
+    };
+}
+
+- (NSArray * (^)(NSArray *, ...))intersectionOf
+{
+    return ^NSArray *(NSArray *array, ...)
+    {
+        va_list args;
+        va_start(args, array);
+        NSMutableArray *arrays = [NSMutableArray arrayWithObjects:array,self,nil];
+        NSArray *value;
+        while( value = va_arg( args, NSArray * ) ) [arrays addObject:value];
+        va_end(args);
+
+        return arrays.reduce(@[], ^NSArray *(NSArray *intersections, NSArray *other)
+        {
+            return [intersections arrayByAddingObjectsFromArray:other.filter(^BOOL(id o)
+            {
+                return !intersections.contains(o) && arrays.all(^BOOL(NSArray *otherArray)
+                            {
+                                return otherArray.contains(o);
+                            });
             })];
         });
     };

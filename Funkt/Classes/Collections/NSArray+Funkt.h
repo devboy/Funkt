@@ -30,4 +30,5 @@
 @property (readonly) NSArray *shuffle;
 @property (readonly) NSArray *(^without)(NSArray *);
 @property (readonly) NSArray *(^unionOf)(NSArray *,...);
+@property (readonly) NSArray *(^intersectionOf)(NSArray *,...);
 @end
