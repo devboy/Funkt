@@ -254,5 +254,26 @@
     };
 }
 
+- (NSArray * (^)(NSArray *, ...))unionWith
+{
+    return ^NSArray *(NSArray *array, ...)
+    {
+        va_list args;
+        va_start(args, array);
+        NSMutableArray *others = NSMutableArray.array;
+        NSArray *value;
+        while( value = va_arg( args, NSArray * ) ) [others addObject:value];
+        va_end(args);
+
+        return others.reduce(self.uniq, ^id(NSArray *unionized, NSArray *other)
+        {
+            return [unionized arrayByAddingObjectsFromArray:other.reject(^BOOL(id o)
+            {
+                return unionized.contains(o);
+            })];
+        });
+    };
+}
+
 
 @end

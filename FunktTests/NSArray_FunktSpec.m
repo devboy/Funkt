@@ -561,6 +561,16 @@ SPEC_BEGIN(NSArray_FunktSpec)
                 });
             });
 
+            describe(@"union", ^
+            {
+                it(@"should merge arrays to a unique array", ^
+                {
+                    NSArray *array = @[@1,@2];
+                    NSArray *expected = @[@1,@2,@3,@4,@5];
+                    [[array.unionWith(@[@1,@2,@3],@[@2,@3,@4],@[@4,@5],nil) should] equal:expected];
+                });
+            });
+
         });
 
 SPEC_END
