@@ -233,5 +233,15 @@
     };
 }
 
+- (NSArray *)shuffle
+{
+    NSMutableArray *array = [self mutableCopy];
+    for (NSUInteger i = array.count - 1; i > 0; i--) {
+        [array exchangeObjectAtIndex:arc4random() % (i + 1)
+                    withObjectAtIndex:i];
+    }
+    return array;
+}
+
 
 @end

@@ -156,7 +156,6 @@ SPEC_BEGIN(NSArray_FunktSpec)
                     {
                         [reduced addObject:value];
                         return accumulator;
-//                        return @([accumulator intValue] + [value intValue]);
                     });
                     [reduced shouldNotBeNil];
                     [[reduced should] containObjectsInArray:array];
@@ -538,6 +537,16 @@ SPEC_BEGIN(NSArray_FunktSpec)
                         return [o class];
                     });
                     [[counted should] equal:expected];
+                });
+            });
+
+            describe(@"shuffle", ^
+            {
+                it(@"should shuffle the array", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5,@6];
+                    [[array.shuffle shouldNot] equal:array];
+                    [[array.shuffle should] containObjectsInArray:array];
                 });
             });
 

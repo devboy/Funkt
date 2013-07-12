@@ -27,4 +27,5 @@
 @property (readonly) NSArray *(^sortBy)(NSComparator);
 @property (readonly) NSDictionary *(^countBy)(id (^countByBlock)(id));
 @property (readonly) NSDictionary *(^groupBy)(id (^groupByBlock)(id));
+@property (readonly) NSArray *shuffle;
 @end
