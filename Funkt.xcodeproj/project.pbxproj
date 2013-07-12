@@ -301,8 +301,6 @@
 			mainGroup = B06B053602EAAD051154BC68;
 			productRefGroup = B06B066EEC96D1E6FA449BB6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				B06B009FDB56F64C823737BD /* Funkt */,
@@ -535,7 +533,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -595,6 +593,7 @@
 				B06B029ACB95F05BCB9DF4FE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B06B0859BC89311F4A0A7BBC /* Build configuration list for PBXProject "Funkt" */ = {
 			isa = XCConfigurationList;
@@ -612,6 +611,7 @@
 				B06B05C32859B79D961C352E /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

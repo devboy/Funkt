@@ -550,6 +550,17 @@ SPEC_BEGIN(NSArray_FunktSpec)
                 });
             });
 
+            describe(@"without", ^
+            {
+                it(@"should omit the given values from the array", ^
+                {
+                    NSArray *array = @[@1,@2,@3,@4,@5,@6];
+                    NSArray *without = @[@5,@6];
+                    NSArray *expected = @[@1,@2,@3,@4];
+                    [[array.without(without) should] equal:expected];
+                });
+            });
+
         });
 
 SPEC_END

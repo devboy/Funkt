@@ -243,5 +243,16 @@
     return array;
 }
 
+- (NSArray * (^)(NSArray *))without
+{
+    return ^NSArray *(NSArray *without)
+    {
+        return self.reduce(@[], ^id(NSArray *array, id value)
+        {
+            return without.contains(value) ? array : [array arrayByAddingObject:value];
+        });
+    };
+}
+
 
 @end
