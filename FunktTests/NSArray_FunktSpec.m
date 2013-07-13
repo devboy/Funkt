@@ -581,6 +581,16 @@ SPEC_BEGIN(NSArray_FunktSpec)
                 });
             });
 
+            describe(@"differenceOf", ^
+            {
+                it(@"should create an array containing only values which are present in a single of the given arrays", ^
+                {
+                    NSArray *array = @[@1,@2,@3];
+                    NSArray *expected = @[@1, @4,@"a"];
+                    [[array.differenceOf(@[@2,@3],@[@2,@3,@4],@[@2,@"a",@3], nil) should] equal:expected];
+                });
+            });
+
         });
 
 SPEC_END

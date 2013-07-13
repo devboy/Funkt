@@ -31,4 +31,5 @@
 @property (readonly) NSArray *(^without)(NSArray *);
 @property (readonly) NSArray *(^unionOf)(NSArray *,...);
 @property (readonly) NSArray *(^intersectionOf)(NSArray *,...);
+@property (readonly) NSArray *(^differenceOf)(NSArray *,...);
 @end
