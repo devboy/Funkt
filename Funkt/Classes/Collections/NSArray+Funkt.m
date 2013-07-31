@@ -132,7 +132,7 @@
 {
     return ^(SEL selector, NSArray *array)
     {
-        for(id obj in self) [obj performSelector:selector];
+        [self makeObjectsPerformSelector:selector];
     };
 }
 
@@ -140,7 +140,7 @@
 {
     return ^NSArray *(NSString *keyPath)
     {
-        return self.map(lambda(o, [o valueForKey:keyPath]));
+        return [self valueForKeyPath:keyPath];
     };
 }
 
@@ -323,5 +323,9 @@
     };
 }
 
+- (NSArray *)reverse
+{
+    return self.reverseObjectEnumerator.allObjects;
+}
 
 @end

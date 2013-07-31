@@ -392,6 +392,16 @@ SPEC_BEGIN(NSArray_FunktSpec)
                     });
                     array.invoke(@selector(stringValue),@[]);
                 });
+
+//                it(@"should pass the given parameters to the selector", ^
+//                {
+//                    NSArray *array = @[[NSNumber mock],[NSNumber mock],[NSNumber mock],[NSNumber mock],[NSNumber mock]];
+//                    array.each(^(id o)
+//                    {
+//                        [[[o should] receive] compare:@1];
+//                    });
+//                    array.invoke(@selector(compare:), @[@1]);
+//                });
             });
 
             describe(@"pluck", ^
@@ -588,6 +598,16 @@ SPEC_BEGIN(NSArray_FunktSpec)
                     NSArray *array = @[@1,@2,@3];
                     NSArray *expected = @[@1, @4,@"a"];
                     [[array.differenceOf(@[@2,@3],@[@2,@3,@4],@[@2,@"a",@3], nil) should] equal:expected];
+                });
+            });
+
+            describe(@"reverse", ^
+            {
+                it(@"should create an array containing all values in reversed order", ^
+                {
+                    NSArray *array = @[@1,@2,@3];
+                    NSArray *expected = @[@3,@2,@1];
+                    [[array.reverse should] equal:expected];
                 });
             });
 
