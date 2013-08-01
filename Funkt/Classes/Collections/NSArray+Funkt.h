@@ -33,4 +33,7 @@
 @property (readonly) NSArray *(^intersectionOf)(NSArray *,...);
 @property (readonly) NSArray *(^differenceOf)(NSArray *,...);
 @property (readonly) NSArray *reverse;
+@property (readonly) NSArray *(^zipWith)(NSArray *,...);
+@property (readonly) NSObject <Option>* (^nth)(NSUInteger);
+@property (readonly) NSArray *compact;
 @end

@@ -3,6 +3,7 @@
 #import "None.h"
 #import "Funkt.h"
 #import "Lambda.h"
+#import "EXTScope.h"
 
 @interface Some ()
 @property(nonatomic, strong) id value;
@@ -38,8 +39,10 @@
 
 - (NSObject <Option> * (^)(id (^mapBlock)(id)))map
 {
+    @weakify(self);
     return ^NSObject <Option> *(id (^mapBlock)(id))
     {
+        @strongify(self);
         return Funkt.option(mapBlock(self.value));
     };
 }
@@ -51,16 +54,20 @@
 
 - (NSObject <Option> * (^)(id (^flatMapBlock)(id)))flatMap
 {
+    @weakify(self);
     return ^NSObject <Option> *(id (^flatMapBlock)(id))
     {
+        @strongify(self);
         return [self flatten].map(flatMapBlock);
     };
 }
 
 - (NSObject <Option> * (^)(BOOL (^filterBlock)(id)))filter
 {
+    @weakify(self);
     return ^NSObject <Option> *(BOOL (^filterBlock)(id))
     {
+        @strongify(self);
         return filterBlock(self.value) ? self : [None none];
     };
 }

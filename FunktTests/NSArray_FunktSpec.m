@@ -611,6 +611,65 @@ SPEC_BEGIN(NSArray_FunktSpec)
                 });
             });
 
+            describe(@"zip", ^
+            {
+                it(@"should merge the values of the given arrays", ^
+                {
+                    NSArray *numbers = @[@1,@2];
+                    NSArray *strings = @[@"one",@"two"];
+                    NSArray *values = @[@(YES),@(NO)];
+                    NSArray *expected = @[@[@1,@"one",@(YES)],@[@2,@"two",@(NO)]];
+
+                    NSArray *zipped = numbers.zipWith(strings, values, nil);
+                    [[zipped shouldNot] beNil];
+                    [[zipped should] equal:expected];
+                });
+
+                it(@"should merge the values of the given arrays with uneven distribution", ^
+                {
+                    NSArray *numbers = @[@1,@2,@3];
+                    NSArray *strings = @[@"one",@"two", @"three"];
+                    NSArray *values = @[@(YES),@(NO)];
+                    NSArray *expected = @[@[@1,@"one",@(YES)],@[@2,@"two",@(NO)],@[@3,@"three"]];
+
+                    NSArray *zipped = numbers.zipWith(strings, values, nil);
+                    [[zipped shouldNot] beNil];
+                    [[zipped should] equal:expected];
+                });
+            });
+
+            describe(@"nth", ^
+            {
+                it(@"should return None if theres no value at the given index", ^
+                {
+                    [[@[].nth(0) should] equal:[None none]];
+                });
+
+                it(@"should return Some with the value at the given index", ^
+                {
+                    NSObject <Option> *result = @[@0,@1].nth(1);
+                    [[result should] beKindOfClass:Some.class];
+                    [[result.get should] equal:@1];
+                });
+            });
+
+            describe(@"compact", ^
+            {
+                it(@"should remove NSNull values from Arrays", ^
+                {
+                    NSArray *compact = @[@1, [NSNull null]].compact;
+                    [[compact shouldNot] beNil];
+                    [[compact should] equal:@[@1]];
+                });
+
+                it(@"should remove None values from Arrays", ^
+                {
+                    NSArray *compact = @[@1, [None none]].compact;
+                    [[compact shouldNot] beNil];
+                    [[compact should] equal:@[@1]];
+                });
+            });
+
         });
 
 SPEC_END

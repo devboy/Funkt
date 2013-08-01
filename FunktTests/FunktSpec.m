@@ -1,5 +1,6 @@
 #import "Kiwi.h"
 #import "Funkt.h"
+#import "None.h"
 
 SPEC_BEGIN(FunktSpec)
 
@@ -18,6 +19,12 @@ SPEC_BEGIN(FunktSpec)
                 it(@"should be null for a NSNull value", ^
                 {
                     BOOL isNull = Funkt.isNull([NSNull null]);
+                    [[theValue(isNull) should] beTrue];
+                });
+
+                it(@"should be null for a None value", ^
+                {
+                    BOOL isNull = Funkt.isNull([None none]);
                     [[theValue(isNull) should] beTrue];
                 });
 

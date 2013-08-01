@@ -12,27 +12,31 @@
 		B06B00C4CD84EE44E2AF44FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0D5F7366601019A6ECA2 /* CoreGraphics.framework */; };
 		B06B00F9825E878815A4BA17 /* FunktSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B065941569E4BB7C55A4F /* FunktSpec.m */; };
 		B06B01E0A39BE4283B770F58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B01293C2DE28323F86400 /* UIKit.framework */; };
+		B06B024AE641A8495C1642E6 /* NSNumber_FunktSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0C6DBB43EA6620753443 /* NSNumber_FunktSpec.m */; };
 		B06B02947FE814588D4679B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B02814573D0AAE2888EDA /* Foundation.framework */; };
 		B06B030B9032E7BEC558AF4C /* NSDictionary_FunktSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B05CBAAE1F8B3D9298BD0 /* NSDictionary_FunktSpec.m */; };
 		B06B041EEAC2D08B6D23FDB2 /* NSArray+Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0B91D17E6D3F22F58A73 /* NSArray+Funkt.m */; };
 		B06B04480A1A3C65524DBB7F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B06B05674FE1DC10AA29966C /* InfoPlist.strings */; };
 		B06B047CAD5C1D96C1E66AD1 /* Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0D619FD69A238333C8BE /* Funkt.m */; };
+		B06B04F2A9896A452EB753F4 /* NSObject+Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0B6F7AB5DF08E80A30DF /* NSObject+Funkt.m */; };
 		B06B050792EF445982F38B38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B02814573D0AAE2888EDA /* Foundation.framework */; };
 		B06B05DD87F8954B3B052E8B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B014952B1BA5FD5361776 /* Default.png */; };
-		B06B07418AB95F476A547132 /* NSObject+Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0F7A53A410C0C56DBC4C /* NSObject+Funkt.m */; };
 		B06B077784EC2C16EE9C6C98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0D651D218952D8EF9985 /* main.m */; };
 		B06B08D651F3019D5391D826 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B06B0B9EF8CC51671E003580 /* InfoPlist.strings */; };
 		B06B093221B9C6E15B210083 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B02DF5DF2DCBB321876D3 /* Default-568h@2x.png */; };
 		B06B098B96D7C5374C046039 /* NSArray_FunktSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B02654AC944D65B595B71 /* NSArray_FunktSpec.m */; };
 		B06B0AADE8542581076B3C02 /* NSDictionary+Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B008D9F039D39224777FF /* NSDictionary+Funkt.m */; };
+		B06B0AF7EEDB082217A2523C /* NSString+Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0E5972F8B1B516DA613C /* NSString+Funkt.m */; };
 		B06B0C50DE3E8E8384AEDDEE /* None.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B036510238AD1FCD5E6C9 /* None.m */; };
 		B06B0CA30DD59BF61A044BB2 /* NSObject_FunktSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0CA1E7B5ED77078C80FE /* NSObject_FunktSpec.m */; };
+		B06B0CFD8667EBCC2EA8D44B /* NSString_FunktSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B04EC38C50FEA82391BE8 /* NSString_FunktSpec.m */; };
 		B06B0D069001949CE7535A0E /* OptionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0B38CF74EA16E339C7DE /* OptionSpec.m */; };
 		B06B0D0BB8B4189A5B37D715 /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B01D9EFC9C821A0EC66C8 /* Some.m */; };
 		B06B0D4218DF369059D7D707 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B01293C2DE28323F86400 /* UIKit.framework */; };
 		B06B0E1ADC2A3B077B0604EE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0C8824E065271A14F213 /* SenTestingKit.framework */; };
 		B06B0E7805F4539DD1E2C27B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B0F979D349EF333D552AB /* Default@2x.png */; };
 		B06B0FC5926A96F7DF00B1B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B012F815619714D724E9D /* AppDelegate.m */; };
+		B06B0FF229ED42ECE518B631 /* NSNumber+Funkt.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0C289B08C4FB2C1542DB /* NSNumber+Funkt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,14 +63,15 @@
 		B06B02DF5DF2DCBB321876D3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B06B035FD92454DB2BBA7845 /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
 		B06B036510238AD1FCD5E6C9 /* None.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = None.m; sourceTree = "<group>"; };
-		B06B03A0E909DA13F5932FAF /* NSObject+Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Funkt.h"; sourceTree = "<group>"; };
 		B06B0464B038F818D89FCB07 /* Some.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Some.h; sourceTree = "<group>"; };
+		B06B04EC38C50FEA82391BE8 /* NSString_FunktSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_FunktSpec.m; sourceTree = "<group>"; };
 		B06B050B798E2CD3F33BB01B /* Funkt-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "Funkt-Info.plist"; sourceTree = "<group>"; };
 		B06B05A5AB3C2E23382695F3 /* NSDictionary+Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Funkt.h"; sourceTree = "<group>"; };
 		B06B05CBAAE1F8B3D9298BD0 /* NSDictionary_FunktSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_FunktSpec.m; sourceTree = "<group>"; };
 		B06B061DFA3E3023D3190E39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B06B065941569E4BB7C55A4F /* FunktSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunktSpec.m; sourceTree = "<group>"; };
 		B06B06D45611D273F39A3E93 /* FunktTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunktTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B06B07082364193E401A05C4 /* NSString+Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Funkt.h"; sourceTree = "<group>"; };
 		B06B07822B5C7F772362DAB0 /* Lambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lambda.h; sourceTree = "<group>"; };
 		B06B0918323DC2705B9459B5 /* Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Funkt.h; sourceTree = "<group>"; };
 		B06B0989AD5DC41594D819FF /* FunktTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "FunktTests-Info.plist"; sourceTree = "<group>"; };
@@ -74,16 +79,21 @@
 		B06B0ABDFE1C9C2C7970BEBB /* None.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = None.h; sourceTree = "<group>"; };
 		B06B0B280A232C136FA8F4D2 /* Funkt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Funkt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B06B0B38CF74EA16E339C7DE /* OptionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionSpec.m; sourceTree = "<group>"; };
+		B06B0B6F7AB5DF08E80A30DF /* NSObject+Funkt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Funkt.m"; sourceTree = "<group>"; };
 		B06B0B91D17E6D3F22F58A73 /* NSArray+Funkt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Funkt.m"; sourceTree = "<group>"; };
+		B06B0BD04266CAC0681F5D6D /* NSObject+Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Funkt.h"; sourceTree = "<group>"; };
+		B06B0C289B08C4FB2C1542DB /* NSNumber+Funkt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Funkt.m"; sourceTree = "<group>"; };
+		B06B0C6DBB43EA6620753443 /* NSNumber_FunktSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumber_FunktSpec.m; sourceTree = "<group>"; };
 		B06B0C8824E065271A14F213 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B06B0CA1E7B5ED77078C80FE /* NSObject_FunktSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_FunktSpec.m; sourceTree = "<group>"; };
 		B06B0D5F7366601019A6ECA2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B06B0D619FD69A238333C8BE /* Funkt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Funkt.m; sourceTree = "<group>"; };
 		B06B0D651D218952D8EF9985 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B06B0DC2C8E5C6EC52DAB10E /* NSArray+Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Funkt.h"; sourceTree = "<group>"; };
+		B06B0E5972F8B1B516DA613C /* NSString+Funkt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Funkt.m"; sourceTree = "<group>"; };
 		B06B0E8EF895EC7CBD2AAAAA /* Funkt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Funkt-Prefix.pch"; sourceTree = "<group>"; };
-		B06B0F7A53A410C0C56DBC4C /* NSObject+Funkt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Funkt.m"; sourceTree = "<group>"; };
 		B06B0F979D349EF333D552AB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B06B0FC3E035B5B9235AB0CE /* NSNumber+Funkt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Funkt.h"; sourceTree = "<group>"; };
 		C9BF022DF5B14FCDBEEBAC56 /* libPods-FunktTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FunktTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5940F8782144D788AE57B0C /* Pods/Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -148,6 +158,8 @@
 				B06B02654AC944D65B595B71 /* NSArray_FunktSpec.m */,
 				B06B05CBAAE1F8B3D9298BD0 /* NSDictionary_FunktSpec.m */,
 				B06B0CA1E7B5ED77078C80FE /* NSObject_FunktSpec.m */,
+				B06B04EC38C50FEA82391BE8 /* NSString_FunktSpec.m */,
+				B06B0C6DBB43EA6620753443 /* NSNumber_FunktSpec.m */,
 			);
 			path = FunktTests;
 			sourceTree = "<group>";
@@ -203,6 +215,12 @@
 				B06B0918323DC2705B9459B5 /* Funkt.h */,
 				B06B0EC4031859F9B2DB9A17 /* Macros */,
 				B06B0FD75C80D1165626D93A /* Collections */,
+				B06B0B6F7AB5DF08E80A30DF /* NSObject+Funkt.m */,
+				B06B0BD04266CAC0681F5D6D /* NSObject+Funkt.h */,
+				B06B0E5972F8B1B516DA613C /* NSString+Funkt.m */,
+				B06B07082364193E401A05C4 /* NSString+Funkt.h */,
+				B06B0C289B08C4FB2C1542DB /* NSNumber+Funkt.m */,
+				B06B0FC3E035B5B9235AB0CE /* NSNumber+Funkt.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -234,8 +252,6 @@
 				B06B0DC2C8E5C6EC52DAB10E /* NSArray+Funkt.h */,
 				B06B008D9F039D39224777FF /* NSDictionary+Funkt.m */,
 				B06B05A5AB3C2E23382695F3 /* NSDictionary+Funkt.h */,
-				B06B0F7A53A410C0C56DBC4C /* NSObject+Funkt.m */,
-				B06B03A0E909DA13F5932FAF /* NSObject+Funkt.h */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -419,7 +435,9 @@
 				B06B047CAD5C1D96C1E66AD1 /* Funkt.m in Sources */,
 				B06B041EEAC2D08B6D23FDB2 /* NSArray+Funkt.m in Sources */,
 				B06B0AADE8542581076B3C02 /* NSDictionary+Funkt.m in Sources */,
-				B06B07418AB95F476A547132 /* NSObject+Funkt.m in Sources */,
+				B06B04F2A9896A452EB753F4 /* NSObject+Funkt.m in Sources */,
+				B06B0AF7EEDB082217A2523C /* NSString+Funkt.m in Sources */,
+				B06B0FF229ED42ECE518B631 /* NSNumber+Funkt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +450,8 @@
 				B06B098B96D7C5374C046039 /* NSArray_FunktSpec.m in Sources */,
 				B06B030B9032E7BEC558AF4C /* NSDictionary_FunktSpec.m in Sources */,
 				B06B0CA30DD59BF61A044BB2 /* NSObject_FunktSpec.m in Sources */,
+				B06B0CFD8667EBCC2EA8D44B /* NSString_FunktSpec.m in Sources */,
+				B06B024AE641A8495C1642E6 /* NSNumber_FunktSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -373,4 +373,56 @@
     return self.reverseObjectEnumerator.allObjects;
 }
 
+- (NSArray * (^)(NSArray *, ...))zipWith
+{
+    @weakify(self);
+    return ^NSArray *(NSArray *array, ...)
+    {
+        @strongify(self);
+
+        va_list args;
+        va_start(args, array);
+        NSMutableArray *arrays = [NSMutableArray arrayWithObjects:self,array,nil];
+        NSArray *value;
+        while( value = va_arg( args, NSArray * ) )
+        {
+            [arrays addObject:value];
+        }
+        va_end(args);
+
+        NSNumber *max = arrays.reduce(@0, ^NSNumber *(NSNumber *acc, NSArray *array)
+        {
+            return acc.unsignedIntegerValue >= array.count ? acc : @(array.count);
+        });
+        NSMutableArray *zipped = [NSMutableArray array];
+        for (uint i = 0; i < max.unsignedIntegerValue; i++)
+        {
+            [zipped addObject:arrays.map(^NSObject <Option>*(NSArray *array)
+            {
+                return array.nth(i);
+            })
+            .compact
+            .pluck(@"get")];
+        }
+        return zipped;
+    };
+}
+
+- (NSObject <Option> * (^)(NSUInteger))nth
+{
+    @weakify(self);
+    return ^NSObject <Option> *(NSUInteger i)
+    {
+        @strongify(self);
+        return self.count >= i+1 ? Funkt.option([self objectAtIndex:i]) : [None none];
+    };
+}
+
+- (NSArray *)compact
+{
+    return self.reject(^BOOL(id o)
+    {
+        return Funkt.isNull(o);
+    });
+}
 @end

@@ -3,11 +3,12 @@
 #import "Some.h"
 
 @implementation Funkt
+
 + (BOOL (^)(id value))isNull
 {
     return ^ BOOL (id value)
     {
-        return value == nil || [value isKindOfClass:[NSNull class]];
+        return value == nil || [value isKindOfClass:[NSNull class]] || value == [None none];
     };
 }
 

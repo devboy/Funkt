@@ -1,5 +1,6 @@
 #import "NSDictionary+Funkt.h"
 #import "NSArray+Funkt.h"
+#import "EXTScope.h"
 
 @implementation NSDictionary (Funkt)
 
@@ -30,8 +31,10 @@
 
 - (NSDictionary * (^)(NSArray *))pick
 {
+    @weakify(self);
     return ^NSDictionary *(NSArray *keys)
     {
+        @strongify(self);
         NSMutableDictionary *dictionary = NSMutableDictionary.dictionary;
         [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
         {
@@ -43,8 +46,10 @@
 
 - (NSDictionary * (^)(NSArray *))omit
 {
+    @weakify(self);
     return ^NSDictionary *(NSArray *keys)
     {
+        @strongify(self);
         NSMutableDictionary *dictionary = NSMutableDictionary.dictionary;
         [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
         {
@@ -56,8 +61,10 @@
 
 - (NSDictionary * (^)(NSDictionary *))defaults
 {
+    @weakify(self);
     return ^NSDictionary *(NSDictionary *defaults)
     {
+        @strongify(self);
         NSMutableDictionary *dictionary = [self mutableCopy];
         [defaults enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
         {
