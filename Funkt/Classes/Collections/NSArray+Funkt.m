@@ -3,6 +3,7 @@
 #import "Funkt.h"
 #import "None.h"
 #import "Lambda.h"
+#import "EXTScope.h"
 
 @implementation NSArray (Funkt)
 
@@ -41,8 +42,10 @@
 
 - (void (^)(void (^)(id)))each
 {
+    @weakify(self);
     return ^(void (^eachBlock)(id))
     {
+        @strongify(self);
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
         {
             eachBlock(obj);
@@ -52,8 +55,10 @@
 
 - (NSArray * (^)(id (^)(id)))map
 {
+    @weakify(self);
     return ^NSArray *(id (^mapBlock)(id))
     {
+        @strongify(self);
         NSMutableArray *array = NSMutableArray.array;
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
         {
@@ -65,8 +70,10 @@
 
 - (id (^)(id, id (^)(id, id)))reduce
 {
+    @weakify(self);
     return ^id(id accumulator, id (^reduceBlock)(id, id) )
     {
+        @strongify(self);
         __block id acc = accumulator;
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
         {
@@ -78,8 +85,10 @@
 
 - (NSObject <Option> * (^)(BOOL (^)(id)))find
 {
+    @weakify(self);
     return ^NSObject <Option> *(BOOL (^findBlock)(id value))
     {
+        @strongify(self);
         for(id obj in self) if(findBlock(obj)) return Funkt.option(obj);
         return None.none;
     };
@@ -87,8 +96,10 @@
 
 - (BOOL (^)(BOOL (^)(id)))any
 {
+    @weakify(self);
     return ^BOOL(BOOL (^anyBlock)(id) )
     {
+        @strongify(self);
         return self.find(anyBlock) != None.none;
     };
 }
@@ -100,8 +111,10 @@
 
 - (BOOL (^)(BOOL (^)(id)))all
 {
+    @weakify(self);
     return ^BOOL(BOOL (^allBlock)(id) )
     {
+        @strongify(self);
         if(self.isEmpty) return NO;
         for(id obj in self) if(!allBlock(obj)) return NO;
         return YES;
@@ -110,8 +123,10 @@
 
 - (NSArray * (^)(BOOL (^)(id)))filter
 {
+    @weakify(self);
     return ^NSArray *(BOOL (^filterBlock)(id))
     {
+        @strongify(self);
         NSMutableArray *array = NSMutableArray.array;
         for(id obj in self) if(filterBlock(obj)) [array addObject:obj];
         return array;
@@ -120,8 +135,10 @@
 
 - (NSArray * (^)(BOOL (^)(id)))reject
 {
+    @weakify(self);
     return ^NSArray *(BOOL (^rejectBlock)(id) )
     {
+        @strongify(self);
         NSMutableArray *array = NSMutableArray.array;
         for(id obj in self) if(!rejectBlock(obj)) [array addObject:obj];
         return array;
@@ -130,24 +147,30 @@
 
 - (void (^)(SEL, NSArray *))invoke
 {
+    @weakify(self);
     return ^(SEL selector, NSArray *array)
     {
+        @strongify(self);
         [self makeObjectsPerformSelector:selector];
     };
 }
 
 - (NSArray * (^)(NSString *))pluck
 {
+    @weakify(self);
     return ^NSArray *(NSString *keyPath)
     {
+        @strongify(self);
         return [self valueForKeyPath:keyPath];
     };
 }
 
 - (NSArray * (^)(NSDictionary *))where
 {
+    @weakify(self);
     return ^NSArray *(NSDictionary *properties)
     {
+        @strongify(self);
         return self.filter(^BOOL(id o)
         {
             for(NSString *key in properties.allKeys)
@@ -168,16 +191,20 @@
 
 - (NSArray * (^)(NSUInteger))take
 {
+    @weakify(self);
     return ^NSArray *(NSUInteger n)
     {
+        @strongify(self);
         return [self subarrayWithRange:NSMakeRange(0, MIN(n, self.count))];
     };
 }
 
 - (NSArray * (^)(NSUInteger))takeRight
 {
+    @weakify(self);
     return ^NSArray *(NSUInteger n)
     {
+        @strongify(self);
         n = MIN(n, self.count);
         return [self subarrayWithRange:NSMakeRange(self.count-n, n)];
     };
@@ -185,6 +212,7 @@
 
 - (BOOL (^)(id))contains
 {
+    @weakify(self);
     return ^BOOL(id o)
     {
         return [self containsObject:o];
@@ -193,16 +221,20 @@
 
 - (NSArray * (^)(NSComparator))sortBy
 {
+    @weakify(self);
     return ^NSArray *(NSComparator comparator)
     {
+        @strongify(self);
         return [self sortedArrayUsingComparator:comparator];
     };
 }
 
 - (NSDictionary * (^)(id (^)(id)))countBy
 {
+    @weakify(self);
     return ^NSDictionary *(id (^countByBlock)(id))
     {
+        @strongify(self);
         return self.reduce(@{}, ^id(NSDictionary *dict, id value)
         {
             id by = countByBlock(value);
@@ -218,8 +250,10 @@
 
 - (NSDictionary * (^)(id (^)(id)))groupBy
 {
+    @weakify(self);
     return ^NSDictionary *(id (^countByBlock)(id))
     {
+        @strongify(self);
         return self.reduce(@{}, ^id(NSDictionary *dict, id value)
         {
             id by = countByBlock(value);
@@ -245,8 +279,10 @@
 
 - (NSArray * (^)(NSArray *))without
 {
+    @weakify(self);
     return ^NSArray *(NSArray *without)
     {
+        @strongify(self);
         return self.reduce(@[], ^id(NSArray *array, id value)
         {
             return without.contains(value) ? array : [array arrayByAddingObject:value];
@@ -256,8 +292,11 @@
 
 - (NSArray * (^)(NSArray *, ...))unionOf
 {
+    @weakify(self);
     return ^NSArray *(NSArray *first, ...)
     {
+        @strongify(self);
+
         va_list args;
         va_start(args, first);
         NSMutableArray *others = [NSMutableArray arrayWithObject:first];
@@ -277,8 +316,11 @@
 
 - (NSArray * (^)(NSArray *, ...))intersectionOf
 {
+    @weakify(self);
     return ^NSArray *(NSArray *array, ...)
     {
+        @strongify(self);
+
         va_list args;
         va_start(args, array);
         NSMutableArray *arrays = [NSMutableArray arrayWithObjects:array,self,nil];
@@ -301,8 +343,11 @@
 
 - (NSArray * (^)(NSArray *, ...))differenceOf
 {
+    @weakify(self);
     return ^NSArray *(NSArray *array, ...)
     {
+        @strongify(self);
+
         va_list args;
         va_start(args, array);
         NSMutableArray *arrays = [NSMutableArray arrayWithObjects:array,self,nil];
