@@ -51,6 +51,22 @@ SPEC_BEGIN(OptionSpec)
 
         describe(@"Some", ^
         {
+            it(@"should raise an exception when initialized with a nil value", ^
+            {
+                [[theBlock(^
+                {
+                    [Some some:nil];
+                }) should] raise];
+                [[theBlock(^
+                {
+                    [Some some:[NSNull null]];
+                }) should] raise];
+                [[theBlock(^
+                {
+                    [Some some:[None none]];
+                }) should] raise];
+            });
+
             it(@"should get the given value", ^
             {
                 NSNumber *value = @5;

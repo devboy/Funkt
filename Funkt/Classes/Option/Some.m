@@ -18,6 +18,7 @@
 
 - (id)initWithValue:(id)value
 {
+    if(Funkt.isNull(value)) [NSException raise:@"Some doesn't accept nil values." format:@"Some doesn't accept nil values."];
     self = [super init];
     if (self)
     {
