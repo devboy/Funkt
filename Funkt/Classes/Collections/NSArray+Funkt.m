@@ -29,15 +29,14 @@
 
 - (NSArray *)flatten
 {
-    NSMutableArray *array = NSMutableArray.array;
-    for(id obj in self)
+    return self.reduce(@[], ^id(NSArray *accumulator, id value)
     {
-        if([obj isKindOfClass:NSArray.class])
-            [array addObjectsFromArray:((NSArray *)obj).flatten];
+        if([value isKindOfClass:NSArray.class])
+            return [accumulator arrayByAddingObjectsFromArray:((NSArray *)value).flatten];
         else
-            [array addObject:obj];
-    }
-    return array;
+            return [accumulator arrayByAddingObject:value];
+
+    });
 }
 
 - (void (^)(void (^)(id)))each
@@ -390,17 +389,14 @@
         }
         va_end(args);
 
-        NSNumber *max = arrays.reduce(@0, ^NSNumber *(NSNumber *acc, NSArray *array)
+        NSNumber *max = arrays.reduce(@0, ^NSNumber *(NSNumber *acc, NSArray *item)
         {
-            return acc.unsignedIntegerValue >= array.count ? acc : @(array.count);
+            return acc.unsignedIntegerValue >= item.count ? acc : @(item.count);
         });
         NSMutableArray *zipped = [NSMutableArray array];
         for (uint i = 0; i < max.unsignedIntegerValue; i++)
         {
-            [zipped addObject:arrays.map(^NSObject <Option>*(NSArray *array)
-            {
-                return array.nth(i);
-            })
+            [zipped addObject:arrays.map(lambda(array, ((NSArray *)array).nth(i)))
             .compact
             .pluck(@"get")];
         }
@@ -420,9 +416,6 @@
 
 - (NSArray *)compact
 {
-    return self.reject(^BOOL(id o)
-    {
-        return Funkt.isNull(o);
-    });
+    return self.reject(lambda(obj, Funkt.isNull(obj)));
 }
 @end
